@@ -1,3 +1,7 @@
+# Dependency- ROS Navigation Stack 
+
+This repository initialized from the https://github.com/TixiaoShan/traversability_mapping repository.
+
 # Traversability Mapping and Motion Planning
 
 This repository contains code for a traversability mapping and motion plannign system for ROS compatible UGVs. The system takes in point cloud from a Velodyne VLP-16 Lidar and outputs a traversability map for autonomous navigation in real-time. A demonstration of the system can be found here -> https://www.youtube.com/watch?v=4pdBpeRGXmw
