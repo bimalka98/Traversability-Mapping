@@ -1,6 +1,4 @@
-# Dependency- ROS Navigation Stack 
-
-This repository initialized from the https://github.com/TixiaoShan/traversability_mapping repository.
+**Note:** This repository initialized from the https://github.com/TixiaoShan/traversability_mapping repository.
 
 # Traversability Mapping and Motion Planning
 
