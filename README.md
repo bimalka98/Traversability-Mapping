@@ -3,6 +3,20 @@
 1. [Traversability Mapping and Autonomous Navigation in Urban Area and Rough Terrain](https://youtu.be/B6lrbAEhEnE)
 2. [Method: Bayesian Generalized Kernel Inference for Terrain Traversability Mapping](https://youtu.be/4pdBpeRGXmw)
 
+## An image of the used robot is shown below:
+<figure>
+  <img src="figures/robot.jpg" alt="Robot" style="width: 50%;"/>
+  <figcaption>Robot</figcaption>
+</figure>
+
+
+## System Architecture is shown below:
+
+<figure>
+  <img src="figures/system_architecture.png" alt="System Architecture" style="width: 50%;"/>
+  <figcaption>System Architecture</figcaption>
+</figure>
+
 --- 
 
 Original README starts here:
