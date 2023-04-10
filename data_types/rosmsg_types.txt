@@ -1,0 +1,1125 @@
+Summary of rosmsg types:
+
+
+Published topics:
+ * /rosout [rosgraph_msgs/Log] 13 publishers
+ * /clock [rosgraph_msgs/Clock] 1 publisher
+ * /rosout_agg [rosgraph_msgs/Log] 1 publisher
+ * /tf [tf2_msgs/TFMessage] 6 publishers
+ * /integrated_to_init [nav_msgs/Odometry] 1 publisher
+ * /full_cloud_projected [sensor_msgs/PointCloud2] 1 publisher
+ * /full_cloud_info [sensor_msgs/PointCloud2] 1 publisher
+ * /ground_cloud [sensor_msgs/PointCloud2] 1 publisher
+ * /segmented_cloud [sensor_msgs/PointCloud2] 1 publisher
+ * /segmented_cloud_pure [sensor_msgs/PointCloud2] 1 publisher
+ * /segmented_cloud_info [cloud_msgs/cloud_info] 1 publisher
+ * /outlier_cloud [sensor_msgs/PointCloud2] 1 publisher
+ * /laser_cloud_sharp [sensor_msgs/PointCloud2] 1 publisher
+ * /laser_cloud_less_sharp [sensor_msgs/PointCloud2] 1 publisher
+ * /laser_cloud_flat [sensor_msgs/PointCloud2] 1 publisher
+ * /laser_cloud_less_flat [sensor_msgs/PointCloud2] 1 publisher
+ * /laser_cloud_corner_last [sensor_msgs/PointCloud2] 1 publisher
+ * /laser_cloud_surf_last [sensor_msgs/PointCloud2] 1 publisher
+ * /outlier_cloud_last [sensor_msgs/PointCloud2] 1 publisher
+ * /laser_odom_to_init [nav_msgs/Odometry] 1 publisher
+ * /occupancy_map_local [nav_msgs/OccupancyGrid] 1 publisher
+ * /occupancy_map_local_height [elevation_msgs/OccupancyElevation] 1 publisher
+ * /elevation_pointcloud [sensor_msgs/PointCloud2] 1 publisher
+ * /prm_graph [visualization_msgs/MarkerArray] 1 publisher
+ * /prm_path [visualization_msgs/MarkerArray] 1 publisher
+ * /prm_single_source_paths [visualization_msgs/MarkerArray] 1 publisher
+ * /prm_cloud_nodes [sensor_msgs/PointCloud2] 1 publisher
+ * /prm_cloud_graph [sensor_msgs/PointCloud2] 1 publisher
+ * /global_path [nav_msgs/Path] 1 publisher
+ * /filtered_pointcloud [sensor_msgs/PointCloud2] 1 publisher
+ * /filtered_pointcloud_visual_high_res [sensor_msgs/PointCloud2] 1 publisher
+ * /filtered_pointcloud_visual_low_res [sensor_msgs/PointCloud2] 1 publisher
+ * /pointcloud_2_laserscan [sensor_msgs/LaserScan] 1 publisher
+ * /cmd_vel [geometry_msgs/Twist] 1 publisher
+ * /move_base/current_goal [geometry_msgs/PoseStamped] 1 publisher
+ * /move_base/goal [move_base_msgs/MoveBaseActionGoal] 1 publisher
+ * /move_base/recovery_status [move_base_msgs/RecoveryStatus] 1 publisher
+ * /key_pose_origin [sensor_msgs/PointCloud2] 1 publisher
+ * /laser_cloud_surround [sensor_msgs/PointCloud2] 1 publisher
+ * /aft_mapped_to_init [nav_msgs/Odometry] 1 publisher
+ * /history_cloud [sensor_msgs/PointCloud2] 1 publisher
+ * /corrected_cloud [sensor_msgs/PointCloud2] 1 publisher
+ * /recent_cloud [sensor_msgs/PointCloud2] 1 publisher
+ * /registered_cloud [sensor_msgs/PointCloud2] 1 publisher
+ * /clicked_point [geometry_msgs/PointStamped] 1 publisher
+ * /move_base_simple/goal [geometry_msgs/PoseStamped] 1 publisher
+ * /velodyne_points [sensor_msgs/PointCloud2] 1 publisher
+ * /move_base/global_costmap/static_layer/parameter_descriptions [dynamic_reconfigure/ConfigDescription] 1 publisher
+ * /move_base/global_costmap/static_layer/parameter_updates [dynamic_reconfigure/Config] 1 publisher
+ * /move_base/global_costmap/obstacles_layer/parameter_descriptions [dynamic_reconfigure/ConfigDescription] 1 publisher
+ * /move_base/global_costmap/obstacles_layer/parameter_updates [dynamic_reconfigure/Config] 1 publisher
+ * /move_base/global_costmap/inflater_layer/parameter_descriptions [dynamic_reconfigure/ConfigDescription] 1 publisher
+ * /move_base/global_costmap/inflater_layer/parameter_updates [dynamic_reconfigure/Config] 1 publisher
+ * /move_base/global_costmap/footprint [geometry_msgs/PolygonStamped] 1 publisher
+ * /move_base/global_costmap/costmap [nav_msgs/OccupancyGrid] 1 publisher
+ * /move_base/global_costmap/costmap_updates [map_msgs/OccupancyGridUpdate] 1 publisher
+ * /move_base/global_costmap/parameter_descriptions [dynamic_reconfigure/ConfigDescription] 1 publisher
+ * /move_base/global_costmap/parameter_updates [dynamic_reconfigure/Config] 1 publisher
+ * /prm_goal [geometry_msgs/PoseStamped] 1 publisher
+ * /twist_command [nav_msgs/Path] 1 publisher
+ * /move_base/local_costmap/obstacles_layer/parameter_descriptions [dynamic_reconfigure/ConfigDescription] 1 publisher
+ * /move_base/local_costmap/obstacles_layer/parameter_updates [dynamic_reconfigure/Config] 1 publisher
+ * /move_base/local_costmap/inflater_layer/parameter_descriptions [dynamic_reconfigure/ConfigDescription] 1 publisher
+ * /move_base/local_costmap/inflater_layer/parameter_updates [dynamic_reconfigure/Config] 1 publisher
+ * /move_base/local_costmap/footprint [geometry_msgs/PolygonStamped] 1 publisher
+ * /move_base/local_costmap/costmap [nav_msgs/OccupancyGrid] 1 publisher
+ * /move_base/local_costmap/costmap_updates [map_msgs/OccupancyGridUpdate] 1 publisher
+ * /move_base/local_costmap/parameter_descriptions [dynamic_reconfigure/ConfigDescription] 1 publisher
+ * /move_base/local_costmap/parameter_updates [dynamic_reconfigure/Config] 1 publisher
+ * /move_base/DWAPlannerROS/global_plan [nav_msgs/Path] 1 publisher
+ * /move_base/DWAPlannerROS/local_plan [nav_msgs/Path] 1 publisher
+ * /move_base/DWAPlannerROS/cost_cloud [sensor_msgs/PointCloud2] 1 publisher
+ * /move_base/DWAPlannerROS/trajectory_cloud [sensor_msgs/PointCloud2] 1 publisher
+ * /move_base/DWAPlannerROS/parameter_descriptions [dynamic_reconfigure/ConfigDescription] 1 publisher
+ * /move_base/DWAPlannerROS/parameter_updates [dynamic_reconfigure/Config] 1 publisher
+ * /move_base/result [move_base_msgs/MoveBaseActionResult] 1 publisher
+ * /move_base/feedback [move_base_msgs/MoveBaseActionFeedback] 1 publisher
+ * /move_base/status [actionlib_msgs/GoalStatusArray] 1 publisher
+ * /move_base/parameter_descriptions [dynamic_reconfigure/ConfigDescription] 1 publisher
+ * /move_base/parameter_updates [dynamic_reconfigure/Config] 1 publisher
+
+Subscribed topics:
+ * /clock [rosgraph_msgs/Clock] 13 subscribers
+ * /rosout [rosgraph_msgs/Log] 1 subscriber
+ * /laser_odom_to_init [nav_msgs/Odometry] 2 subscribers
+ * /aft_mapped_to_init [nav_msgs/Odometry] 1 subscriber
+ * /velodyne_points [sensor_msgs/PointCloud2] 1 subscriber
+ * /segmented_cloud [sensor_msgs/PointCloud2] 1 subscriber
+ * /segmented_cloud_info [cloud_msgs/cloud_info] 1 subscriber
+ * /outlier_cloud [sensor_msgs/PointCloud2] 1 subscriber
+ * /imu/data [sensor_msgs/Imu] 2 subscribers
+ * /tf [tf2_msgs/TFMessage] 5 subscribers
+ * /tf_static [tf2_msgs/TFMessage] 5 subscribers
+ * /filtered_pointcloud [sensor_msgs/PointCloud2] 1 subscriber
+ * /prm_goal [geometry_msgs/PoseStamped] 1 subscriber
+ * /occupancy_map_local_height [elevation_msgs/OccupancyElevation] 1 subscriber
+ * /full_cloud_info [sensor_msgs/PointCloud2] 1 subscriber
+ * /move_base_simple/goal [geometry_msgs/PoseStamped] 1 subscriber
+ * /laser_cloud_corner_last [sensor_msgs/PointCloud2] 1 subscriber
+ * /laser_cloud_surf_last [sensor_msgs/PointCloud2] 1 subscriber
+ * /outlier_cloud_last [sensor_msgs/PointCloud2] 1 subscriber
+ * /prm_graph [visualization_msgs/MarkerArray] 1 subscriber
+ * /twist_command [nav_msgs/Path] 1 subscriber
+ * /key_pose_origin [sensor_msgs/PointCloud2] 1 subscriber
+ * /elevation_pointcloud [sensor_msgs/PointCloud2] 1 subscriber
+ * /occupancy_map_local [nav_msgs/OccupancyGrid] 1 subscriber
+ * /pointcloud_2_laserscan [sensor_msgs/LaserScan] 1 subscriber
+ * /move_base/global_costmap/footprint [geometry_msgs/PolygonStamped] 1 subscriber
+ * /global_path [nav_msgs/Path] 1 subscriber
+ * /move_base/TrajectoryPlannerROS/local_plan [nav_msgs/Path] 1 subscriber
+ * /move_base/DWAPlannerROS/local_plan [nav_msgs/Path] 1 subscriber
+ * /move_base/local_costmap/footprint [geometry_msgs/PolygonStamped] 1 subscriber
+ * /odometry/filtered [nav_msgs/Odometry] 1 subscriber
+ * /move_base/goal [move_base_msgs/MoveBaseActionGoal] 1 subscriber
+ * /move_base/cancel [actionlib_msgs/GoalID] 1 subscriber
+
+=================================================
+Detailed info of rosmsg types:
+
+ROS topic - /aft_mapped_to_init
+Type: nav_msgs/Odometry
+
+Publishers: 
+ * /mapOptmization (http://LAP-BIMALKA98:42143/)
+
+Subscribers: 
+ * /transformFusion (http://LAP-BIMALKA98:37639/)
+
+
+====================
+
+ROS topic - /clicked_point
+Type: geometry_msgs/PointStamped
+
+Publishers: 
+ * /rviz (http://LAP-BIMALKA98:34369/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /clock
+Type: rosgraph_msgs/Clock
+
+Publishers: 
+ * /play_1681132288569368962 (http://LAP-BIMALKA98:39873/)
+
+Subscribers: 
+ * /rosout (http://LAP-BIMALKA98:35123/)
+ * /camera_init_to_map (http://LAP-BIMALKA98:46023/)
+ * /base_link_to_camera (http://LAP-BIMALKA98:43279/)
+ * /velodyne_base_link (http://LAP-BIMALKA98:36811/)
+ * /transformFusion (http://LAP-BIMALKA98:37639/)
+ * /imageProjection (http://LAP-BIMALKA98:39347/)
+ * /featureAssociation (http://LAP-BIMALKA98:34649/)
+ * /traversability_map (http://LAP-BIMALKA98:34665/)
+ * /traversability_prm (http://LAP-BIMALKA98:40719/)
+ * /traversability_filter (http://LAP-BIMALKA98:37099/)
+ * /move_base (http://LAP-BIMALKA98:41259/)
+ * /mapOptmization (http://LAP-BIMALKA98:42143/)
+ * /rviz (http://LAP-BIMALKA98:34369/)
+
+
+====================
+
+ROS topic - /cmd_vel
+Type: geometry_msgs/Twist
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /corrected_cloud
+Type: sensor_msgs/PointCloud2
+
+Publishers: 
+ * /mapOptmization (http://LAP-BIMALKA98:42143/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /elevation_pointcloud
+Type: sensor_msgs/PointCloud2
+
+Publishers: 
+ * /traversability_map (http://LAP-BIMALKA98:34665/)
+
+Subscribers: 
+ * /rviz (http://LAP-BIMALKA98:34369/)
+
+
+====================
+
+ROS topic - /filtered_pointcloud
+Type: sensor_msgs/PointCloud2
+
+Publishers: 
+ * /traversability_filter (http://LAP-BIMALKA98:37099/)
+
+Subscribers: 
+ * /traversability_map (http://LAP-BIMALKA98:34665/)
+
+
+====================
+
+ROS topic - /filtered_pointcloud_visual_high_res
+Type: sensor_msgs/PointCloud2
+
+Publishers: 
+ * /traversability_filter (http://LAP-BIMALKA98:37099/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /filtered_pointcloud_visual_low_res
+Type: sensor_msgs/PointCloud2
+
+Publishers: 
+ * /traversability_filter (http://LAP-BIMALKA98:37099/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /full_cloud_info
+Type: sensor_msgs/PointCloud2
+
+Publishers: 
+ * /imageProjection (http://LAP-BIMALKA98:39347/)
+
+Subscribers: 
+ * /traversability_filter (http://LAP-BIMALKA98:37099/)
+
+
+====================
+
+ROS topic - /full_cloud_projected
+Type: sensor_msgs/PointCloud2
+
+Publishers: 
+ * /imageProjection (http://LAP-BIMALKA98:39347/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /global_path
+Type: nav_msgs/Path
+
+Publishers: 
+ * /traversability_prm (http://LAP-BIMALKA98:40719/)
+
+Subscribers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+
+====================
+
+ROS topic - /ground_cloud
+Type: sensor_msgs/PointCloud2
+
+Publishers: 
+ * /imageProjection (http://LAP-BIMALKA98:39347/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /history_cloud
+Type: sensor_msgs/PointCloud2
+
+Publishers: 
+ * /mapOptmization (http://LAP-BIMALKA98:42143/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /imu/data
+Type: sensor_msgs/Imu
+
+Publishers: None
+
+Subscribers: 
+ * /featureAssociation (http://LAP-BIMALKA98:34649/)
+ * /mapOptmization (http://LAP-BIMALKA98:42143/)
+
+
+====================
+
+ROS topic - /integrated_to_init
+Type: nav_msgs/Odometry
+
+Publishers: 
+ * /transformFusion (http://LAP-BIMALKA98:37639/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /key_pose_origin
+Type: sensor_msgs/PointCloud2
+
+Publishers: 
+ * /mapOptmization (http://LAP-BIMALKA98:42143/)
+
+Subscribers: 
+ * /rviz (http://LAP-BIMALKA98:34369/)
+
+
+====================
+
+ROS topic - /laser_cloud_corner_last
+Type: sensor_msgs/PointCloud2
+
+Publishers: 
+ * /featureAssociation (http://LAP-BIMALKA98:34649/)
+
+Subscribers: 
+ * /mapOptmization (http://LAP-BIMALKA98:42143/)
+
+
+====================
+
+ROS topic - /laser_cloud_flat
+Type: sensor_msgs/PointCloud2
+
+Publishers: 
+ * /featureAssociation (http://LAP-BIMALKA98:34649/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /laser_cloud_less_flat
+Type: sensor_msgs/PointCloud2
+
+Publishers: 
+ * /featureAssociation (http://LAP-BIMALKA98:34649/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /laser_cloud_less_sharp
+Type: sensor_msgs/PointCloud2
+
+Publishers: 
+ * /featureAssociation (http://LAP-BIMALKA98:34649/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /laser_cloud_sharp
+Type: sensor_msgs/PointCloud2
+
+Publishers: 
+ * /featureAssociation (http://LAP-BIMALKA98:34649/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /laser_cloud_surf_last
+Type: sensor_msgs/PointCloud2
+
+Publishers: 
+ * /featureAssociation (http://LAP-BIMALKA98:34649/)
+
+Subscribers: 
+ * /mapOptmization (http://LAP-BIMALKA98:42143/)
+
+
+====================
+
+ROS topic - /laser_cloud_surround
+Type: sensor_msgs/PointCloud2
+
+Publishers: 
+ * /mapOptmization (http://LAP-BIMALKA98:42143/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /laser_odom_to_init
+Type: nav_msgs/Odometry
+
+Publishers: 
+ * /featureAssociation (http://LAP-BIMALKA98:34649/)
+
+Subscribers: 
+ * /transformFusion (http://LAP-BIMALKA98:37639/)
+ * /mapOptmization (http://LAP-BIMALKA98:42143/)
+
+
+====================
+
+ROS topic - /move_base/DWAPlannerROS/cost_cloud
+Type: sensor_msgs/PointCloud2
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /move_base/DWAPlannerROS/global_plan
+Type: nav_msgs/Path
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /move_base/DWAPlannerROS/local_plan
+Type: nav_msgs/Path
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+
+====================
+
+ROS topic - /move_base/DWAPlannerROS/parameter_descriptions
+Type: dynamic_reconfigure/ConfigDescription
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /move_base/DWAPlannerROS/parameter_updates
+Type: dynamic_reconfigure/Config
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /move_base/DWAPlannerROS/trajectory_cloud
+Type: sensor_msgs/PointCloud2
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /move_base/TrajectoryPlannerROS/local_plan
+Type: nav_msgs/Path
+
+Publishers: None
+
+Subscribers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+
+====================
+
+ROS topic - /move_base/cancel
+Type: actionlib_msgs/GoalID
+
+Publishers: None
+
+Subscribers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+
+====================
+
+ROS topic - /move_base/current_goal
+Type: geometry_msgs/PoseStamped
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /move_base/feedback
+Type: move_base_msgs/MoveBaseActionFeedback
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /move_base/global_costmap/costmap
+Type: nav_msgs/OccupancyGrid
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /move_base/global_costmap/costmap_updates
+Type: map_msgs/OccupancyGridUpdate
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /move_base/global_costmap/footprint
+Type: geometry_msgs/PolygonStamped
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+
+====================
+
+ROS topic - /move_base/global_costmap/inflater_layer/parameter_descriptions
+Type: dynamic_reconfigure/ConfigDescription
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /move_base/global_costmap/inflater_layer/parameter_updates
+Type: dynamic_reconfigure/Config
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /move_base/global_costmap/obstacles_layer/parameter_descriptions
+Type: dynamic_reconfigure/ConfigDescription
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /move_base/global_costmap/obstacles_layer/parameter_updates
+Type: dynamic_reconfigure/Config
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /move_base/global_costmap/parameter_descriptions
+Type: dynamic_reconfigure/ConfigDescription
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /move_base/global_costmap/parameter_updates
+Type: dynamic_reconfigure/Config
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /move_base/global_costmap/static_layer/parameter_descriptions
+Type: dynamic_reconfigure/ConfigDescription
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /move_base/global_costmap/static_layer/parameter_updates
+Type: dynamic_reconfigure/Config
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /move_base/goal
+Type: move_base_msgs/MoveBaseActionGoal
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+
+====================
+
+ROS topic - /move_base/local_costmap/costmap
+Type: nav_msgs/OccupancyGrid
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /move_base/local_costmap/costmap_updates
+Type: map_msgs/OccupancyGridUpdate
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /move_base/local_costmap/footprint
+Type: geometry_msgs/PolygonStamped
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+
+====================
+
+ROS topic - /move_base/local_costmap/inflater_layer/parameter_descriptions
+Type: dynamic_reconfigure/ConfigDescription
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /move_base/local_costmap/inflater_layer/parameter_updates
+Type: dynamic_reconfigure/Config
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /move_base/local_costmap/obstacles_layer/parameter_descriptions
+Type: dynamic_reconfigure/ConfigDescription
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /move_base/local_costmap/obstacles_layer/parameter_updates
+Type: dynamic_reconfigure/Config
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /move_base/local_costmap/parameter_descriptions
+Type: dynamic_reconfigure/ConfigDescription
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /move_base/local_costmap/parameter_updates
+Type: dynamic_reconfigure/Config
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /move_base/parameter_descriptions
+Type: dynamic_reconfigure/ConfigDescription
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /move_base/parameter_updates
+Type: dynamic_reconfigure/Config
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /move_base/recovery_status
+Type: move_base_msgs/RecoveryStatus
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /move_base/result
+Type: move_base_msgs/MoveBaseActionResult
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /move_base/status
+Type: actionlib_msgs/GoalStatusArray
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /move_base_simple/goal
+Type: geometry_msgs/PoseStamped
+
+Publishers: 
+ * /rviz (http://LAP-BIMALKA98:34369/)
+
+Subscribers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+
+====================
+
+ROS topic - /occupancy_map_local
+Type: nav_msgs/OccupancyGrid
+
+Publishers: 
+ * /traversability_map (http://LAP-BIMALKA98:34665/)
+
+Subscribers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+
+====================
+
+ROS topic - /occupancy_map_local_height
+Type: elevation_msgs/OccupancyElevation
+
+Publishers: 
+ * /traversability_map (http://LAP-BIMALKA98:34665/)
+
+Subscribers: 
+ * /traversability_prm (http://LAP-BIMALKA98:40719/)
+
+
+====================
+
+ROS topic - /odometry/filtered
+Type: nav_msgs/Odometry
+
+Publishers: None
+
+Subscribers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+
+====================
+
+ROS topic - /outlier_cloud
+Type: sensor_msgs/PointCloud2
+
+Publishers: 
+ * /imageProjection (http://LAP-BIMALKA98:39347/)
+
+Subscribers: 
+ * /featureAssociation (http://LAP-BIMALKA98:34649/)
+
+
+====================
+
+ROS topic - /outlier_cloud_last
+Type: sensor_msgs/PointCloud2
+
+Publishers: 
+ * /featureAssociation (http://LAP-BIMALKA98:34649/)
+
+Subscribers: 
+ * /mapOptmization (http://LAP-BIMALKA98:42143/)
+
+
+====================
+
+ROS topic - /pointcloud_2_laserscan
+Type: sensor_msgs/LaserScan
+
+Publishers: 
+ * /traversability_filter (http://LAP-BIMALKA98:37099/)
+
+Subscribers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+
+====================
+
+ROS topic - /prm_cloud_graph
+Type: sensor_msgs/PointCloud2
+
+Publishers: 
+ * /traversability_prm (http://LAP-BIMALKA98:40719/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /prm_cloud_nodes
+Type: sensor_msgs/PointCloud2
+
+Publishers: 
+ * /traversability_prm (http://LAP-BIMALKA98:40719/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /prm_goal
+Type: geometry_msgs/PoseStamped
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: 
+ * /traversability_prm (http://LAP-BIMALKA98:40719/)
+
+
+====================
+
+ROS topic - /prm_graph
+Type: visualization_msgs/MarkerArray
+
+Publishers: 
+ * /traversability_prm (http://LAP-BIMALKA98:40719/)
+
+Subscribers: 
+ * /rviz (http://LAP-BIMALKA98:34369/)
+
+
+====================
+
+ROS topic - /prm_path
+Type: visualization_msgs/MarkerArray
+
+Publishers: 
+ * /traversability_prm (http://LAP-BIMALKA98:40719/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /prm_single_source_paths
+Type: visualization_msgs/MarkerArray
+
+Publishers: 
+ * /traversability_prm (http://LAP-BIMALKA98:40719/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /recent_cloud
+Type: sensor_msgs/PointCloud2
+
+Publishers: 
+ * /mapOptmization (http://LAP-BIMALKA98:42143/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /registered_cloud
+Type: sensor_msgs/PointCloud2
+
+Publishers: 
+ * /mapOptmization (http://LAP-BIMALKA98:42143/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /rosout
+Type: rosgraph_msgs/Log
+
+Publishers: 
+ * /play_1681132288569368962 (http://LAP-BIMALKA98:39873/)
+ * /camera_init_to_map (http://LAP-BIMALKA98:46023/)
+ * /base_link_to_camera (http://LAP-BIMALKA98:43279/)
+ * /velodyne_base_link (http://LAP-BIMALKA98:36811/)
+ * /transformFusion (http://LAP-BIMALKA98:37639/)
+ * /imageProjection (http://LAP-BIMALKA98:39347/)
+ * /featureAssociation (http://LAP-BIMALKA98:34649/)
+ * /traversability_map (http://LAP-BIMALKA98:34665/)
+ * /traversability_prm (http://LAP-BIMALKA98:40719/)
+ * /traversability_filter (http://LAP-BIMALKA98:37099/)
+ * /move_base (http://LAP-BIMALKA98:41259/)
+ * /mapOptmization (http://LAP-BIMALKA98:42143/)
+ * /rviz (http://LAP-BIMALKA98:34369/)
+
+Subscribers: 
+ * /rosout (http://LAP-BIMALKA98:35123/)
+
+
+====================
+
+ROS topic - /rosout_agg
+Type: rosgraph_msgs/Log
+
+Publishers: 
+ * /rosout (http://LAP-BIMALKA98:35123/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /segmented_cloud
+Type: sensor_msgs/PointCloud2
+
+Publishers: 
+ * /imageProjection (http://LAP-BIMALKA98:39347/)
+
+Subscribers: 
+ * /featureAssociation (http://LAP-BIMALKA98:34649/)
+
+
+====================
+
+ROS topic - /segmented_cloud_info
+Type: cloud_msgs/cloud_info
+
+Publishers: 
+ * /imageProjection (http://LAP-BIMALKA98:39347/)
+
+Subscribers: 
+ * /featureAssociation (http://LAP-BIMALKA98:34649/)
+
+
+====================
+
+ROS topic - /segmented_cloud_pure
+Type: sensor_msgs/PointCloud2
+
+Publishers: 
+ * /imageProjection (http://LAP-BIMALKA98:39347/)
+
+Subscribers: None
+
+
+====================
+
+ROS topic - /tf
+Type: tf2_msgs/TFMessage
+
+Publishers: 
+ * /camera_init_to_map (http://LAP-BIMALKA98:46023/)
+ * /base_link_to_camera (http://LAP-BIMALKA98:43279/)
+ * /velodyne_base_link (http://LAP-BIMALKA98:36811/)
+ * /transformFusion (http://LAP-BIMALKA98:37639/)
+ * /featureAssociation (http://LAP-BIMALKA98:34649/)
+ * /mapOptmization (http://LAP-BIMALKA98:42143/)
+
+Subscribers: 
+ * /traversability_map (http://LAP-BIMALKA98:34665/)
+ * /traversability_prm (http://LAP-BIMALKA98:40719/)
+ * /traversability_filter (http://LAP-BIMALKA98:37099/)
+ * /move_base (http://LAP-BIMALKA98:41259/)
+ * /rviz (http://LAP-BIMALKA98:34369/)
+
+
+====================
+
+ROS topic - /tf_static
+Type: tf2_msgs/TFMessage
+
+Publishers: None
+
+Subscribers: 
+ * /traversability_map (http://LAP-BIMALKA98:34665/)
+ * /traversability_prm (http://LAP-BIMALKA98:40719/)
+ * /traversability_filter (http://LAP-BIMALKA98:37099/)
+ * /move_base (http://LAP-BIMALKA98:41259/)
+ * /rviz (http://LAP-BIMALKA98:34369/)
+
+
+====================
+
+ROS topic - /twist_command
+Type: nav_msgs/Path
+
+Publishers: 
+ * /move_base (http://LAP-BIMALKA98:41259/)
+
+Subscribers: 
+ * /rviz (http://LAP-BIMALKA98:34369/)
+
+
+====================
+
+ROS topic - /velodyne_points
+Type: sensor_msgs/PointCloud2
+
+Publishers: 
+ * /play_1681132288569368962 (http://LAP-BIMALKA98:39873/)
+
+Subscribers: 
+ * /imageProjection (http://LAP-BIMALKA98:39347/)
+
+
+====================
+
