@@ -5,7 +5,7 @@
 
 ## An image of the used robot is shown below:
 <figure>
-  <img src="figures/robot.jpg" alt="Robot" style="width: 50%;"/>
+  <img src="figures/robot.jpg" alt="Robot" style="width: 75%;"/>
   <figcaption>Robot</figcaption>
 </figure>
 
@@ -13,7 +13,7 @@
 ## System Architecture is shown below:
 
 <figure>
-  <img src="figures/system_architecture.png" alt="System Architecture" style="width: 50%;"/>
+  <img src="figures/system_architecture.png" alt="System Architecture" style="width: 75%;"/>
   <figcaption>System Architecture</figcaption>
 </figure>
 
