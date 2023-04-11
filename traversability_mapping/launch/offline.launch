@@ -8,11 +8,25 @@
     <node pkg="tf" type="static_transform_publisher" name="camera_init_to_map"  args="0 0 0 1.570795   0 1.570795 /map /camera_init 10" />
     <node pkg="tf" type="static_transform_publisher" name="base_link_to_camera" args="0 0 0 -1.570795 -1.570795 0 /camera /base_link   10" />
 
-    <!--- Lidar Odometry -->    
-    <node pkg="lego_loam" type="imageProjection"    name="imageProjection"    output="screen"/>
+    <!--- LeGO-LOAM -->    
+    <!-- <node pkg="lego_loam" type="imageProjection"    name="imageProjection"    output="screen"/>
     <node pkg="lego_loam" type="featureAssociation" name="featureAssociation" output="screen"/>
     <node pkg="lego_loam" type="mapOptmization"     name="mapOptmization"     output="screen"/>
-    <node pkg="lego_loam" type="transformFusion"    name="transformFusion"    output="screen"/>
+    <node pkg="lego_loam" type="transformFusion"    name="transformFusion"    output="screen"/> -->
+
+    <!--- LeGO-LOAM-BOR -->
+    <arg name="rosbag"  default=""/>
+    <arg name="imu_topic" default="/imu/data"/>
+    <arg name="lidar_topic" default="/velodyne_points"/>
+
+    <rosparam file="$(find lego_loam_bor)/config/loam_config.yaml" command="load"/>
+
+    <node pkg="lego_loam_bor" type="lego_loam_bor_create_map"    name="lego_loam_bor_create_map"    output="screen" >
+       <remap from="/lidar_points" to="$(arg lidar_topic)"/>
+       <remap from="/imu/data" to="$(arg imu_topic)"/>
+       <param name="rosbag"      value="$(arg rosbag)" type="string" />
+       <param name="imu_topic"   value="$(arg imu_topic)" type="string" />
+    </node>
 
     <!--- Run Rviz (launch-prefix="nice" for lower cpu usage)-->
     <node pkg="rviz" type="rviz" name="rviz" output="log" args="-d $(find traversability_mapping)/launch/include/traversability_mapping.rviz" />
