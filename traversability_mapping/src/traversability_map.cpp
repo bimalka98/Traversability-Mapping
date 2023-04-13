@@ -497,7 +497,7 @@ public:
         // 3. Publish elevation point cloud
         sensor_msgs::PointCloud2 laserCloudTemp;
         pcl::toROSMsg(*laserCloudElevation, laserCloudTemp);
-        laserCloudTemp.header.frame_id = "/map";
+        laserCloudTemp.header.frame_id = "map";
         laserCloudTemp.header.stamp = ros::Time::now();
         pubElevationCloud.publish(laserCloudTemp);
         // 4. free memory

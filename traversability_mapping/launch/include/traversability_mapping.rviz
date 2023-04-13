@@ -7,7 +7,6 @@ Panels:
         - /Global Options1
         - /Status1
         - /map1
-        - /map1/Status1
         - /base_link1
         - /PRM Path1/Namespaces1
       Splitter Ratio: 0.38624337315559387
@@ -180,7 +179,7 @@ Visualization Manager:
       Color: 255; 255; 255
       Color Transformer: Intensity
       Decay Time: 0
-      Enabled: false
+      Enabled: true
       Invert Rainbow: false
       Max Color: 255; 0; 0
       Max Intensity: 100
@@ -197,7 +196,7 @@ Visualization Manager:
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: false
-      Value: false
+      Value: true
     - Alpha: 0.800000011920929
       Class: rviz/Map
       Color Scheme: map
@@ -231,8 +230,8 @@ Visualization Manager:
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
-        Max Value: 6.987844944000244
-        Min Value: -8.837991714477539
+        Max Value: 9.022857666015625
+        Min Value: -5.319346904754639
         Value: true
       Axis: Z
       Channel Name: intensity
@@ -240,7 +239,7 @@ Visualization Manager:
       Color: 255; 255; 255
       Color Transformer: AxisColor
       Decay Time: 0
-      Enabled: true
+      Enabled: false
       Invert Rainbow: false
       Max Color: 255; 255; 255
       Min Color: 0; 0; 0
@@ -255,7 +254,7 @@ Visualization Manager:
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true
-      Value: true
+      Value: false
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
@@ -437,7 +436,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 98.29507446289062
+      Distance: 27.297027587890625
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -453,9 +452,9 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.8097971677780151
+      Pitch: 0.799797773361206
       Target Frame: base_link
-      Yaw: 3.797219753265381
+      Yaw: 2.8440258502960205
     Saved: ~
 Window Geometry:
   Displays:
