@@ -71,7 +71,7 @@ typedef struct kdtree kdtree_t;
 typedef struct kdres kdres_t;
 
 // Environment
-extern const bool urbanMapping = true;
+extern const bool urbanMapping = false;
 
 // VLP-16
 extern const int N_SCAN = 16;

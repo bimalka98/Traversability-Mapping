@@ -5,9 +5,6 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /Global Options1
-        - /Status1
-        - /map1
-        - /base_link1
         - /PRM Path1/Namespaces1
       Splitter Ratio: 0.38624337315559387
     Tree Height: 787
@@ -230,8 +227,8 @@ Visualization Manager:
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
-        Max Value: 9.022857666015625
-        Min Value: -5.319346904754639
+        Max Value: 5.9219865798950195
+        Min Value: -9.051033020019531
         Value: true
       Axis: Z
       Channel Name: intensity
@@ -436,7 +433,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 27.297027587890625
+      Distance: 37.40896987915039
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -452,9 +449,9 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.799797773361206
+      Pitch: 0.5347970724105835
       Target Frame: base_link
-      Yaw: 2.8440258502960205
+      Yaw: 2.845846176147461
     Saved: ~
 Window Geometry:
   Displays:
