@@ -68,9 +68,9 @@ add_dependencies(traversability_prm ${catkin_EXPORTED_TARGETS} elevation_msgs_ge
 target_link_libraries(traversability_prm ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${OpenCV_LIBRARIES})
 
 # Path Planner
-add_executable(traversability_path   src/traversability_path.cpp)
-add_dependencies(traversability_path ${catkin_EXPORTED_TARGETS} elevation_msgs_gencpp)
-target_link_libraries(traversability_path ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${OpenCV_LIBRARIES})
+# add_executable(traversability_path   src/traversability_path.cpp)
+# add_dependencies(traversability_path ${catkin_EXPORTED_TARGETS} elevation_msgs_gencpp)
+# target_link_libraries(traversability_path ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${OpenCV_LIBRARIES})
 
 # move_base Planner Plugin
 add_library(tm_planner_lib src/library/tm_planner.cpp)

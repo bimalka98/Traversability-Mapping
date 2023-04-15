@@ -279,21 +279,23 @@ struct state_t{
     // # 0. obstacle cost
     // # 1. elevation cost
     // # 2. distance cost
-    float costsToRoot[NUM_COSTS];
-    float costsToParent[NUM_COSTS]; // used in RRT*
-    float costsToGo[NUM_COSTS];
+    float costsToRoot[NUM_COSTS];    
 
     state_t* parentState; // parent for this state in PRM and RRT*
     vector<neighbor_t> neighborList; // PRM adjencency list with edge costs
-    vector<state_t*> childList; // RRT*
+    
+    // Following variables are not used: https://github.com/TixiaoShan/traversability_mapping/issues/7#issuecomment-612863737
+    // float costsToParent[NUM_COSTS]; // used in RRT*
+    // float costsToGo[NUM_COSTS];
+    // vector<state_t*> childList; // RRT*
 
     // default initialization
     state_t(){
         parentState = NULL;
         for (int i = 0; i < NUM_COSTS; ++i){
             costsToRoot[i] = FLT_MAX;
-            costsToParent[i] = FLT_MAX;
-            costsToGo[i] = FLT_MAX;
+            // costsToParent[i] = FLT_MAX;
+            // costsToGo[i] = FLT_MAX;
         }
     }
     // use a state input to initialize new state
@@ -307,7 +309,7 @@ struct state_t{
         parentState = NULL;
         for (int i = 0; i < NUM_COSTS; ++i){
             costsToRoot[i] = FLT_MAX;
-            costsToParent[i] = stateIn->costsToParent[i];
+            // costsToParent[i] = stateIn->costsToParent[i];
         }
     }
 };
