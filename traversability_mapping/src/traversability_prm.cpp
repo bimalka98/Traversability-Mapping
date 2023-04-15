@@ -761,10 +761,12 @@ public:
         }
         // Publish
         sensor_msgs::PointCloud2 laserCloudTemp;
+        
         pcl::toROSMsg(nodeCloud, laserCloudTemp);
         laserCloudTemp.header.frame_id = "map";
         laserCloudTemp.header.stamp = ros::Time::now();
         pubCloudPRMNodes.publish(laserCloudTemp);
+        
         pcl::toROSMsg(adjacencyCloud, laserCloudTemp);
         laserCloudTemp.header.frame_id = "map";
         laserCloudTemp.header.stamp = ros::Time::now();
