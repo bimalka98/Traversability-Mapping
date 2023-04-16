@@ -14,7 +14,7 @@
 * So we can save it at first run and then simply load it in the next run for path planning.
 
 ```cpp
-// PRM graph structure
+// PRM graph structure is a vector of pointers to states
 vector<state_t*> nodeList;
 
 struct state_t{
@@ -25,29 +25,12 @@ struct state_t{
     bool validFlag;
     // # Cost types 0. obstacle cost 1. elevation cost 2. distance cost
     float costsToRoot[NUM_COSTS];
-
     state_t* parentState; // parent for this state in PRM and RRT*
     vector<neighbor_t> neighborList; // PRM adjencency list with edge costs
-
-    // default initialization
-    state_t()
-    // use a state input to initialize new state    
-    state_t(state_t* stateIn)
 };
 
 struct neighbor_t{
     state_t* neighbor;
     float edgeCosts[NUM_COSTS]; // the cost from this state to neighbor
-    
-    // default initialization: do not need to save
-    neighbor_t(){
-        neighbor = NULL;
-        for (int i = 0; i < NUM_COSTS; ++i)
-            edgeCosts[i] = FLT_MAX;
-    }
 };
 ```
-## April 15th, 2023
-
-## BFS Search
-* 
