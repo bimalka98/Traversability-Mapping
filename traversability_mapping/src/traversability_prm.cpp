@@ -52,7 +52,7 @@ private:
     std::mutex mtx;
 
     /////////////// PRM save and load parameters ///////////////
-    std::string prmFileName = "/tmp/prm/prm_graph.txt";
+    std::string prmFileName = "/tmp/prm_graph.txt";
 
 public:
     TraversabilityPRM():
@@ -78,7 +78,11 @@ public:
         allocateMemory(); 
     }
 
-    ~TraversabilityPRM(){}
+    ~TraversabilityPRM(){
+
+        // save the PRM graph to file
+        savePRMGraph();
+    }
 
     void allocateMemory(){
 
@@ -790,20 +794,26 @@ public:
     }
 
     void savePRMGraph(){
+        std::cout << "==================" << std::endl;
+        std::cout << "|Saving PRM graph|" << std::endl;
+        std::cout << "==================" << std::endl;
 
         std::ofstream outFile(prmFileName, std::ios::out | std::ios::binary); // create a new binary file for output
-        if (!outFile) {
+        if (!outFile.is_open()) {
             std::cerr << "Error: could not open output file " << prmFileName << std::endl;
             return;
         }
 
         size_t numStates = nodeList.size();
         outFile.write(reinterpret_cast<const char*>(&numStates), sizeof(numStates)); // write the number of states to the file
+        std::cout << "saving " << numStates << " states to " << prmFileName << std::endl;
 
         for (size_t i = 0; i < numStates; i++) {
             
             // get a reference to the current state
             const state_t& state = *(nodeList[i]);
+
+            std::cout << "saving state " << state.stateId << " of " << numStates << std::endl;
 
             // write the state's member variables to the file
             outFile.write(reinterpret_cast<const char*>(state.x), sizeof(state.x));
@@ -812,19 +822,31 @@ public:
             outFile.write(reinterpret_cast<const char*>(&state.cost), sizeof(state.cost));
             outFile.write(reinterpret_cast<const char*>(&state.validFlag), sizeof(state.validFlag));
             outFile.write(reinterpret_cast<const char*>(state.costsToRoot), sizeof(state.costsToRoot));
+            
+            std::cout << "saved member data" << std::endl; // upto here program is working fine
 
             // write the parent state ID to the file
-            size_t parentStateId = state.parentState->stateId;
+            int parentStateId = state.parentState->stateId;
+
+            std::cout << "parent state ID: " << parentStateId << std::endl;
+
             outFile.write(reinterpret_cast<const char*>(&parentStateId), sizeof(parentStateId));
+
+            std::cout << "saved parent state ID" << std::endl;
 
             // write the number of neighbors and each neighbor's member variables to the file
             size_t numNeighbors = state.neighborList.size();
             outFile.write(reinterpret_cast<const char*>(&numNeighbors), sizeof(numNeighbors));
 
+            std::cout << "saving neighbor data" << std::endl;
+
             // write the neighbor's state ID and edge costs to the file
             for (size_t j = 0; j < numNeighbors; j++) {
                 const neighbor_t& neighbor = state.neighborList[j];
-                size_t neighborIndex = neighbor.neighbor->stateId;
+                int neighborIndex = neighbor.neighbor->stateId;
+
+                std::cout << "[PRM INFO] Saving neighbor " << j << " of " << numNeighbors << std::endl;
+
                 outFile.write(reinterpret_cast<const char*>(&neighborIndex), sizeof(neighborIndex));
                 outFile.write(reinterpret_cast<const char*>(neighbor.edgeCosts), sizeof(neighbor.edgeCosts));
             }
