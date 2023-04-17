@@ -43,7 +43,7 @@ struct neighbor_t{
 * Saving and loading the PRM graph structure is the problem at hand.
 * `kdtree_t *kdtree;` is impossible to save and load. Found a way to restore it using the data of loaded `vector<state_t*> nodeList;`. But this is yet to be verified.
 
-### Solution 1: Initialized on April 17th, 2023
+### Solution 1: April 17th, 2023
 
 1. Save the `vector<state_t*> nodeList;` to a file during the program destruction (possibly).
 2. Load the `vector<state_t*> nodeList;` from the file during the program initialization (possibly once inside the `buildRoadMap()` fucntion).
@@ -65,3 +65,15 @@ void buildRoadMap(){
 ```
 3. Restore the `kdtree_t *kdtree;` using the data of loaded `vector<state_t*> nodeList;` and function `insertIntoKdtree(newState)` in the `void generateSamples()` fucntion.
 4. Enter to the usual flow of the program.
+
+## April 17th, 2023
+**Saving and loading the PRM graph structure?**
+
+* [Serialization and Unserialization](https://isocpp.org/wiki/faq/serialization)
+    * taking something complicated and turning it into a flat sequence of 1s and 0s, then taking that sequence of 1s and 0s (possibly at another place, possibly at another time) and reconstructing the original complicated “something.”
+        - Decide between human-readable (“text”) and non-human-readable (“binary”) formats. The tradeoffs are non-trivial. Later FAQs show how to write simple types in text format and how to write simple types in binary format.
+        - Use the least sophisticated solution when the objects to be serialized aren’t part of an inheritance hierarchy (that is, when they’re all of the same class) and when they don’t contain pointers to other objects.
+        - Use the second level of sophistication when the objects to be serialized are part of an inheritance hierarchy, but when they don’t contain pointers to other objects.
+        - Use the third level of sophistication when the objects to be serialized contain pointers to other objects, but when those pointers form a tree with no cycles and no joins.
+        - Use the fourth level of sophistication when the objects to be serialized contain pointers to other objects, and when those pointers form a graph with no cycles, and with joins at the leaves only.
+        - [**Use the most sophisticated solution when the objects to be serialized contain pointers to other objects, and when those pointers form a graph that might have cycles or joins**](https://isocpp.org/wiki/faq/serialization#serialize-with-cycles): Seems like this is the case for us.
