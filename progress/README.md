@@ -34,3 +34,34 @@ struct neighbor_t{
     float edgeCosts[NUM_COSTS]; // the cost from this state to neighbor
 };
 ```
+## April 16th, 2023
+
+* Completed the investigation of dependencies of PRM path planning algorithms.
+* Path planning algorithm depends on the following variables:
+    - `vector<state_t*> nodeList;` 
+    - `kdtree_t *kdtree;`
+* Saving and loading the PRM graph structure is the problem at hand.
+* `kdtree_t *kdtree;` is impossible to save and load. Found a way to restore it using the data of loaded `vector<state_t*> nodeList;`. But this is yet to be verified.
+
+### Solution 1: Initialized on April 17th, 2023
+
+1. Save the `vector<state_t*> nodeList;` to a file during the program destruction (possibly).
+2. Load the `vector<state_t*> nodeList;` from the file during the program initialization (possibly once inside the `buildRoadMap()` fucntion).
+```cpp
+void buildRoadMap(){
+        // 1. generate samples
+        generateSamples();
+        // 2. Add edges and update state height if map is changed
+        updateStatesAndEdges();   
+        // 3. Planning
+        bfsSearch();
+        // 4. Visualize Roadmap
+        publishPRM();
+        // 5. Publish path to move_base and stop planning
+        publishPathStop();
+        // 6. Convert PRM Graph into point cloud for external usage
+        publishRoadmap2Cloud();
+    }
+```
+3. Restore the `kdtree_t *kdtree;` using the data of loaded `vector<state_t*> nodeList;` and function `insertIntoKdtree(newState)` in the `void generateSamples()` fucntion.
+4. Enter to the usual flow of the program.
