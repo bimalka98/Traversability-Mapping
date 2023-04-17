@@ -9,6 +9,7 @@
     ],
     "files.associations": {
         "hash_map": "cpp",
-        "hash_set": "cpp"
+        "hash_set": "cpp",
+        "iosfwd": "cpp"
     }
 }

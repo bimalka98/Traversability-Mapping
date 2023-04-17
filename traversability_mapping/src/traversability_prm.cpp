@@ -51,6 +51,9 @@ private:
 
     std::mutex mtx;
 
+    /////////////// PRM save and load parameters ///////////////
+    std::string prmFileName = "/tmp/prm/prm_graph.txt";
+
 public:
     TraversabilityPRM():
         nh("~"),
@@ -784,6 +787,52 @@ public:
         tf::Matrix3x3 m(transform.getRotation());
         m.getRPY(roll, pitch, yaw);
         robotState->theta = yaw + M_PI; // change from -PI~PI to 0~1*PI
+    }
+
+    void savePRMGraph(){
+
+        std::ofstream outFile(prmFileName, std::ios::out | std::ios::binary); // create a new binary file for output
+        if (!outFile) {
+            std::cerr << "Error: could not open output file " << prmFileName << std::endl;
+            return;
+        }
+
+        size_t numStates = nodeList.size();
+        outFile.write(reinterpret_cast<const char*>(&numStates), sizeof(numStates)); // write the number of states to the file
+
+        for (size_t i = 0; i < numStates; i++) {
+            
+            // get a reference to the current state
+            const state_t& state = *(nodeList[i]);
+
+            // write the state's member variables to the file
+            outFile.write(reinterpret_cast<const char*>(state.x), sizeof(state.x));
+            outFile.write(reinterpret_cast<const char*>(&state.theta), sizeof(state.theta));
+            outFile.write(reinterpret_cast<const char*>(&state.stateId), sizeof(state.stateId));
+            outFile.write(reinterpret_cast<const char*>(&state.cost), sizeof(state.cost));
+            outFile.write(reinterpret_cast<const char*>(&state.validFlag), sizeof(state.validFlag));
+            outFile.write(reinterpret_cast<const char*>(state.costsToRoot), sizeof(state.costsToRoot));
+
+            // write the parent state ID to the file
+            size_t parentStateId = state.parentState->stateId;
+            outFile.write(reinterpret_cast<const char*>(&parentStateId), sizeof(parentStateId));
+
+            // write the number of neighbors and each neighbor's member variables to the file
+            size_t numNeighbors = state.neighborList.size();
+            outFile.write(reinterpret_cast<const char*>(&numNeighbors), sizeof(numNeighbors));
+
+            // write the neighbor's state ID and edge costs to the file
+            for (size_t j = 0; j < numNeighbors; j++) {
+                const neighbor_t& neighbor = state.neighborList[j];
+                size_t neighborIndex = neighbor.neighbor->stateId;
+                outFile.write(reinterpret_cast<const char*>(&neighborIndex), sizeof(neighborIndex));
+                outFile.write(reinterpret_cast<const char*>(neighbor.edgeCosts), sizeof(neighbor.edgeCosts));
+            }
+        }
+
+        outFile.close();
+        std::cout << "Saved PRM graph with " << numStates << " states to file " << prmFileName << std::endl;
+
     }
 
 };
