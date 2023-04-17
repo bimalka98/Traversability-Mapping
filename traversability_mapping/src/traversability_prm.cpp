@@ -826,11 +826,16 @@ public:
             std::cout << "saved member data" << std::endl; // upto here program is working fine
 
             // write the parent state ID to the file
-            int parentStateId = state.parentState->stateId;
-
-            std::cout << "parent state ID: " << parentStateId << std::endl;
-
-            outFile.write(reinterpret_cast<const char*>(&parentStateId), sizeof(parentStateId));
+            if (state.parentState != nullptr) {
+                int parentStateId = state.parentState->stateId;
+                std::cout << "parent state ID: " << parentStateId << std::endl;
+                outFile.write(reinterpret_cast<const char*>(&parentStateId), sizeof(parentStateId));
+            }
+            else {
+                int parentStateId = -1;
+                std::cout << "no parent exist for this state. denoted by -1" << std::endl;
+                outFile.write(reinterpret_cast<const char*>(&parentStateId), sizeof(parentStateId));
+            }            
 
             std::cout << "saved parent state ID" << std::endl;
 
