@@ -53,6 +53,8 @@ private:
 
     /////////////// PRM save and load parameters ///////////////
     std::string prmFileName = "/tmp/prm_graph.txt";
+    bool prmGraphLoaded = false;
+    bool mappingDone = true;
 
 public:
     TraversabilityPRM():
@@ -138,6 +140,9 @@ public:
     }
 
     void buildRoadMap(){
+
+        // 0. load PRM graph from file if it is not loaded yet
+        loadPRMGraph();        
         // 1. generate samples
         generateSamples();
         // 2. Add edges and update state height if map is changed
@@ -164,9 +169,7 @@ public:
         // start planning
         planningFlag = true;
     }
-
-    
-    
+ 
     bool bfsSearch(){
 
         pathList.clear();
@@ -795,6 +798,9 @@ public:
 
     // Fucntion to save the RPM graph
     void savePRMGraph(){
+
+        if (mappingDone) return;
+
         std::cout << "==================" << std::endl;
         std::cout << "|Saving PRM graph|" << std::endl;
         std::cout << "==================" << std::endl;
@@ -879,6 +885,14 @@ public:
 
     // Function to load the RPM graph
     void loadPRMGraph(){
+
+        // check if the graph is already loaded
+        if (!prmGraphLoaded && mappingDone){            
+            prmGraphLoaded = true;
+        } else {
+            return;
+        }
+
         std::cout << "==================" << std::endl;
         std::cout << "|Loading PRM graph|" << std::endl;
         std::cout << "==================" << std::endl;
@@ -895,7 +909,6 @@ public:
         // read the number of states from the file
         size_t numStates = 0;
         inFile.read(reinterpret_cast<char*>(&numStates), sizeof(numStates));
-
         for (size_t i = 0; i < numStates; i++) {
             
             std::cout << "retrieving state " << i << " of " << (numStates-1) << std::endl;
@@ -946,14 +959,32 @@ public:
             std::cout << "retrieved neighbor data" << std::endl;
 
             // add the state to the node list
-            nodeList[i] = state;
+            nodeList.push_back(state);
                        
         }
 
+        std::cout << "nodeList populated" << std::endl;
+
         // set the parent and neighbor pointers using the state IDs
+        for (auto node : nodeList) {
 
+            // set the parent pointer            
+            if (node->parentSId != -1) {
+                node->parentState = nodeList[node->parentSId];
+            }
 
-        // adding nodes to kdtree
+            // set the neighbor pointers for each node's neighbor list
+            for (auto& neighbor_node : node->neighborList) {
+                if (neighbor_node.neighborSId != -1) {
+                    neighbor_node.neighbor = nodeList[neighbor_node.neighborSId];
+                }
+            }
+
+            // adding nodes to kdtree
+            insertIntoKdtree(node);
+        }
+
+        std::cout << "set pointers using the state IDs and add nodes to kdtree" << std::endl;
 
         inFile.close();
         std::cout << "Loaded PRM graph with " << numStates << " states from file " << prmFileName << std::endl;
