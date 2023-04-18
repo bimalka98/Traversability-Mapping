@@ -813,7 +813,7 @@ public:
             // get a reference to the current state
             const state_t& state = *(nodeList[i]);
 
-            std::cout << "saving state " << state.stateId << " of " << numStates << std::endl;
+            std::cout << "saving state " << state.stateId << " of " << (numStates-1) << std::endl;
 
             // write the state's member variables to the file
             outFile.write(reinterpret_cast<const char*>(state.x), sizeof(state.x));
@@ -826,14 +826,17 @@ public:
             std::cout << "saved member data" << std::endl; // upto here program is working fine
 
             // write the parent state ID to the file
+            int parentStateId = -1;
             if (state.parentState != nullptr) {
-                int parentStateId = state.parentState->stateId;
+                parentStateId = state.parentState->stateId;
                 std::cout << "parent state ID: " << parentStateId << std::endl;
                 outFile.write(reinterpret_cast<const char*>(&parentStateId), sizeof(parentStateId));
             }
             else {
-                int parentStateId = -1;
-                std::cout << "no parent exist for this state. denoted by -1" << std::endl;
+
+                // at the reloading we need to know if there is no parent for a state
+                parentStateId = -1;
+                std::cerr << "Error: no parent exist for this state, saved as -1" << std::endl;
                 outFile.write(reinterpret_cast<const char*>(&parentStateId), sizeof(parentStateId));
             }            
 
@@ -843,17 +846,28 @@ public:
             size_t numNeighbors = state.neighborList.size();
             outFile.write(reinterpret_cast<const char*>(&numNeighbors), sizeof(numNeighbors));
 
-            std::cout << "saving neighbor data" << std::endl;
+            std::cout << "saving neighbor data..." << std::endl;
 
             // write the neighbor's state ID and edge costs to the file
+            int neighborIndex = -1;
             for (size_t j = 0; j < numNeighbors; j++) {
+                
+                // get a reference to the current neighbor
                 const neighbor_t& neighbor = state.neighborList[j];
-                int neighborIndex = neighbor.neighbor->stateId;
 
-                std::cout << "[PRM INFO] Saving neighbor " << j << " of " << numNeighbors << std::endl;
+                // check if the neighbor is valid: i guess it is always valid. not sure, better to check
+                if (neighbor.neighbor != nullptr) {
+                    neighborIndex = neighbor.neighbor->stateId;
+                    std::cout << "saving neighbor " << j << " of " << (numNeighbors-1) << " with state ID " << neighborIndex << std::endl;
 
-                outFile.write(reinterpret_cast<const char*>(&neighborIndex), sizeof(neighborIndex));
-                outFile.write(reinterpret_cast<const char*>(neighbor.edgeCosts), sizeof(neighbor.edgeCosts));
+                    outFile.write(reinterpret_cast<const char*>(&neighborIndex), sizeof(neighborIndex));
+                    outFile.write(reinterpret_cast<const char*>(neighbor.edgeCosts), sizeof(neighbor.edgeCosts));    
+
+                } else {
+                    neighborIndex = -1;
+                    outFile.write(reinterpret_cast<const char*>(&neighborIndex), sizeof(neighborIndex));
+                    std::cerr << "Error: neighbor is null, saved as -1" << std::endl;
+                }
             }
         }
 
