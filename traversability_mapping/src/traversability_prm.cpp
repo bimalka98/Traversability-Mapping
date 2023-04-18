@@ -950,6 +950,11 @@ public:
                        
         }
 
+        // set the parent and neighbor pointers using the state IDs
+
+
+        // adding nodes to kdtree
+
         inFile.close();
         std::cout << "Loaded PRM graph with " << numStates << " states from file " << prmFileName << std::endl;
     }

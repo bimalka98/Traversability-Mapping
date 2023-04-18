@@ -77,3 +77,4 @@ void buildRoadMap(){
         - Use the third level of sophistication when the objects to be serialized contain pointers to other objects, but when those pointers form a tree with no cycles and no joins.
         - Use the fourth level of sophistication when the objects to be serialized contain pointers to other objects, and when those pointers form a graph with no cycles, and with joins at the leaves only.
         - [**Use the most sophisticated solution when the objects to be serialized contain pointers to other objects, and when those pointers form a graph that might have cycles or joins**](https://isocpp.org/wiki/faq/serialization#serialize-with-cycles): Seems like this is the case for us.
+* Saved using binary format complete. Did not check serialization and unserialization as they were complex.     
