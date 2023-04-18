@@ -793,6 +793,7 @@ public:
         robotState->theta = yaw + M_PI; // change from -PI~PI to 0~1*PI
     }
 
+    // Fucntion to save the RPM graph
     void savePRMGraph(){
         std::cout << "==================" << std::endl;
         std::cout << "|Saving PRM graph|" << std::endl;
@@ -876,6 +877,74 @@ public:
 
     }
 
+    // Function to load the RPM graph
+    void loadPRMGraph(){
+        std::cout << "==================" << std::endl;
+        std::cout << "|Loading PRM graph|" << std::endl;
+        std::cout << "==================" << std::endl;
+
+        std::ifstream inFile(prmFileName, std::ios::in | std::ios::binary); // open the file for input
+        if (!inFile.is_open()) {
+            std::cerr << "Error: could not open input file " << prmFileName << std::endl;
+            return;
+        }
+
+        // clear the node list
+        nodeList.clear();
+
+        // map to store a state's ID and it's parent's ID
+        // this can be used after readig all the states, to set the parent pointers
+        // because stateID is the same as index of a state in the nodeList vector
+        std::map<int, int> state2ParentMap;
+
+        // map to store a state's ID and it's neighbor's ID
+        // this can be used after readig all the states, to set the neighbor pointers
+        // because stateID is the same as index of a state in the nodeList vector
+        std::map<int, std::vector<int>> state2NeighborMap;
+
+        // read the number of states from the file
+        size_t numStates = 0;
+        inFile.read(reinterpret_cast<char*>(&numStates), sizeof(numStates));
+
+        for (size_t i = 0; i < numStates; i++) {
+            
+            // create a new state and read its member variables from the file
+            state_t* state = new state_t;
+
+            inFile.read(reinterpret_cast<char*>(state->x), sizeof(state->x));
+            inFile.read(reinterpret_cast<char*>(&state->theta), sizeof(state->theta));
+            inFile.read(reinterpret_cast<char*>(&state->stateId), sizeof(state->stateId));
+            inFile.read(reinterpret_cast<char*>(&state->cost), sizeof(state->cost));
+            inFile.read(reinterpret_cast<char*>(&state->validFlag), sizeof(state->validFlag));
+            inFile.read(reinterpret_cast<char*>(state->costsToRoot), sizeof(state->costsToRoot));
+
+            std::cout << "retrieved member data" << std::endl;
+            
+            // add the state to the node list: 
+            // because the rest of data cannot be added without filling the node list first
+            nodeList[i] = state;
+
+            // read the parent state ID from the file
+            int parentStateId;
+            inFile.read(reinterpret_cast<char*>(&parentStateId), sizeof(parentStateId));
+
+            // add the state ID and parent ID to the map
+            // we cannot set the parent pointer here because the parent state may not have been read yet.            
+            state2ParentMap[state->stateId] = parentStateId;
+            std::cout << "retrieved parent state ID" << std::endl;
+
+            std::cout << "retrieving neighbor data..." << std::endl;
+            // read the number of neighbors for the state and create a neighbor list
+            size_t numNeighbors;
+            inFile.read(reinterpret_cast<char*>(&numNeighbors), sizeof(numNeighbors));
+            state->neighborList.resize(numNeighbors);
+
+                       
+        }
+
+        inFile.close();
+        return nodeList;
+    }
 };
 
 

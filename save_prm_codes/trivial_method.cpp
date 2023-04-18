@@ -177,3 +177,146 @@ vector<state_t*> loadNodeList(const string& filename) {
     cout << "Loaded PRM graph with " << numStates << " states from file " << filename << endl;
     return nodeList;
 }
+
+
+/// Load a PRM graph from a file: corresponding to te method developed by me.
+
+vector<state_t*> loadPRMGraph(string fileName) {
+    ifstream inFile(fileName, std::ios::in | std::ios::binary);
+    if (!inFile.is_open()) {
+        std::cerr << "Error: could not open input file " << fileName << std::endl;
+        return {};
+    }
+
+    // read the number of states in the graph
+    size_t numStates;
+    inFile.read(reinterpret_cast<char*>(&numStates), sizeof(numStates));
+
+    // create a vector to hold the states
+    vector<state_t*> nodeList(numStates);
+
+    for (size_t i = 0; i < numStates; i++) {
+        // create a new state and read its member variables from the file
+        state_t* state = new state_t;
+        inFile.read(reinterpret_cast<char*>(state->x), sizeof(state->x));
+        inFile.read(reinterpret_cast<char*>(&state->theta), sizeof(state->theta));
+        inFile.read(reinterpret_cast<char*>(&state->stateId), sizeof(state->stateId));
+        inFile.read(reinterpret_cast<char*>(&state->cost), sizeof(state->cost));
+        inFile.read(reinterpret_cast<char*>(&state->validFlag), sizeof(state->validFlag));
+        inFile.read(reinterpret_cast<char*>(state->costsToRoot), sizeof(state->costsToRoot));
+
+        // read the parent state ID from the file
+        int parentStateId;
+        inFile.read(reinterpret_cast<char*>(&parentStateId), sizeof(parentStateId));
+
+        // set the state's parent based on the parent state ID
+        if (parentStateId >= 0 && parentStateId < static_cast<int>(numStates)) {
+            state->parentState = nodeList[parentStateId];
+        }
+
+        // read the number of neighbors for the state and create a neighbor list
+        size_t numNeighbors;
+        inFile.read(reinterpret_cast<char*>(&numNeighbors), sizeof(numNeighbors));
+        state->neighborList.resize(numNeighbors);
+
+        // read each neighbor's state ID and edge costs and add it to the neighbor list
+        int neighborIndex;
+        for (size_t j = 0; j < numNeighbors; j++) {
+            inFile.read(reinterpret_cast<char*>(&neighborIndex), sizeof(neighborIndex));
+            if (neighborIndex >= 0 && neighborIndex < static_cast<int>(numStates)) {
+                state->neighborList[j].neighbor = nodeList[neighborIndex];
+                inFile.read(reinterpret_cast<char*>(state->neighborList[j].edgeCosts), sizeof(state->neighborList[j].edgeCosts));
+            }
+        }
+
+        // add the state to the node list
+        nodeList[i] = state;
+    }
+
+    inFile.close();
+    return nodeList;
+}
+
+// save prm finalized
+    void savePRMGraph(){
+        std::cout << "==================" << std::endl;
+        std::cout << "|Saving PRM graph|" << std::endl;
+        std::cout << "==================" << std::endl;
+
+        std::ofstream outFile(prmFileName, std::ios::out | std::ios::binary); // create a new binary file for output
+        if (!outFile.is_open()) {
+            std::cerr << "Error: could not open output file " << prmFileName << std::endl;
+            return;
+        }
+
+        size_t numStates = nodeList.size();
+        outFile.write(reinterpret_cast<const char*>(&numStates), sizeof(numStates)); // write the number of states to the file
+        std::cout << "saving " << numStates << " states to " << prmFileName << std::endl;
+
+        for (size_t i = 0; i < numStates; i++) {
+            
+            // get a reference to the current state
+            const state_t& state = *(nodeList[i]);
+
+            std::cout << "saving state " << state.stateId << " of " << (numStates-1) << std::endl;
+
+            // write the state's member variables to the file
+            outFile.write(reinterpret_cast<const char*>(state.x), sizeof(state.x));
+            outFile.write(reinterpret_cast<const char*>(&state.theta), sizeof(state.theta));
+            outFile.write(reinterpret_cast<const char*>(&state.stateId), sizeof(state.stateId));
+            outFile.write(reinterpret_cast<const char*>(&state.cost), sizeof(state.cost));
+            outFile.write(reinterpret_cast<const char*>(&state.validFlag), sizeof(state.validFlag));
+            outFile.write(reinterpret_cast<const char*>(state.costsToRoot), sizeof(state.costsToRoot));
+            
+            std::cout << "saved member data" << std::endl; // upto here program is working fine
+
+            // write the parent state ID to the file
+            int parentStateId = -1;
+            if (state.parentState != nullptr) {
+                parentStateId = state.parentState->stateId;
+                std::cout << "parent state ID: " << parentStateId << std::endl;
+                outFile.write(reinterpret_cast<const char*>(&parentStateId), sizeof(parentStateId));
+            }
+            else {
+
+                // at the reloading we need to know if there is no parent for a state
+                parentStateId = -1;
+                std::cerr << "Error: no parent exist for this state, saved as -1" << std::endl;
+                outFile.write(reinterpret_cast<const char*>(&parentStateId), sizeof(parentStateId));
+            }            
+
+            std::cout << "saved parent state ID" << std::endl;
+
+            // write the number of neighbors and each neighbor's member variables to the file
+            size_t numNeighbors = state.neighborList.size();
+            outFile.write(reinterpret_cast<const char*>(&numNeighbors), sizeof(numNeighbors));
+
+            std::cout << "saving neighbor data..." << std::endl;
+
+            // write the neighbor's state ID and edge costs to the file
+            int neighborIndex = -1;
+            for (size_t j = 0; j < numNeighbors; j++) {
+                
+                // get a reference to the current neighbor
+                const neighbor_t& neighbor = state.neighborList[j];
+
+                // check if the neighbor is valid: i guess it is always valid. not sure, better to check
+                if (neighbor.neighbor != nullptr) {
+                    neighborIndex = neighbor.neighbor->stateId;
+                    std::cout << "saving neighbor " << j << " of " << (numNeighbors-1) << " with state ID " << neighborIndex << std::endl;
+
+                    outFile.write(reinterpret_cast<const char*>(&neighborIndex), sizeof(neighborIndex));
+                    outFile.write(reinterpret_cast<const char*>(neighbor.edgeCosts), sizeof(neighbor.edgeCosts));    
+
+                } else {
+                    neighborIndex = -1;
+                    outFile.write(reinterpret_cast<const char*>(&neighborIndex), sizeof(neighborIndex));
+                    std::cerr << "Error: neighbor is null, saved as -1" << std::endl;
+                }
+            }
+        }
+
+        outFile.close();
+        std::cout << "Saved PRM graph with " << numStates << " states to file " << prmFileName << std::endl;
+
+    }

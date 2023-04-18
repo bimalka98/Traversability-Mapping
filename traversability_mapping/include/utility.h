@@ -282,6 +282,7 @@ struct state_t{
     float costsToRoot[NUM_COSTS];    
 
     state_t* parentState; // parent for this state in PRM and RRT*
+    int parentStateId; // useful in loading PRM from file
     vector<neighbor_t> neighborList; // PRM adjencency list with edge costs
     
     // Following variables are not used: https://github.com/TixiaoShan/traversability_mapping/issues/7#issuecomment-612863737
@@ -317,6 +318,7 @@ struct state_t{
 
 struct neighbor_t{
     state_t* neighbor;
+    int neighborId; // useful in loading PRM from file
     float edgeCosts[NUM_COSTS]; // the cost from this state to neighbor
     neighbor_t(){
         neighbor = NULL;
