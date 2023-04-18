@@ -180,7 +180,6 @@ vector<state_t*> loadNodeList(const string& filename) {
 
 
 /// Load a PRM graph from a file: corresponding to te method developed by me.
-
 vector<state_t*> loadPRMGraph(string fileName) {
     ifstream inFile(fileName, std::ios::in | std::ios::binary);
     if (!inFile.is_open()) {
