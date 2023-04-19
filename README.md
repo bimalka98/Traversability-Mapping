@@ -1,3 +1,12 @@
+## Git rebase notice on April 19th, 2023
+
+* This branch was rebased to the main branch for further development. 
+* Saving the PRM Graph, and loading it to the program in different runtime were successful.
+* Add `const bool debugMode = false;` parameter in `void loadPRMGraph()` and `void savePRMGraph()` fucntions of `traversability_prm.cpp` file to surpress the unnecessay debug messages.
+* Created separate launch files for mapping and localization.
+  - `offline_createMap.launch` = runs lego-loam-bor-create-map node, save global 3D map, and save PRM graph
+  - `offline_localize.launch` = runs lego-loam-bor-localize, and load PRM graph
+
 **Note:** This repository initialized from the https://github.com/TixiaoShan/traversability_mapping repository.
 
 1. [Traversability Mapping and Autonomous Navigation in Urban Area and Rough Terrain](https://youtu.be/B6lrbAEhEnE)
