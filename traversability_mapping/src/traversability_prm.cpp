@@ -2,6 +2,8 @@
 
 #include "elevation_msgs/OccupancyElevation.h"
 
+// gloabl variables to select mappping or localization
+bool MappingState;
 
 class TraversabilityPRM{
 private:
@@ -53,8 +55,7 @@ private:
 
     /////////////// PRM save and load parameters ///////////////
     std::string prmFileName = "/tmp/prm_graph.txt";
-    bool prmGraphLoaded = false;
-    const bool mappingDone = true;
+    bool prmGraphLoaded = false;    
 
 public:
     TraversabilityPRM():
@@ -799,7 +800,8 @@ public:
     // Fucntion to save the RPM graph
     void savePRMGraph(){
 
-        if (mappingDone) return;
+        // if the robot in localization mode, do not save the graph. Use the saved graph instead.
+        if (!MappingState) return;
 
         // control the debug message visibility
         const bool debugMode = false;
@@ -891,8 +893,8 @@ public:
     // Function to load the RPM graph
     void loadPRMGraph(){
 
-        // check if the graph is already loaded
-        if (!prmGraphLoaded && mappingDone){            
+        // check if the graph is already loaded and mapping is done
+        if (!prmGraphLoaded && !MappingState){            
             prmGraphLoaded = true;
         } else {
             return;
@@ -1005,6 +1007,9 @@ public:
 int main(int argc, char** argv){
 
     ros::init(argc, argv, "traversability_mapping");
+
+    // get the ros parameters from the launch file and set them to the global variables
+    ros::param::get("~mapping_state", MappingState);
 
     TraversabilityPRM TPRM;
 

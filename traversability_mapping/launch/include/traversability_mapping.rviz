@@ -175,7 +175,7 @@ Visualization Manager:
       Color: 255; 255; 255
       Color Transformer: Intensity
       Decay Time: 0
-      Enabled: true
+      Enabled: false
       Invert Rainbow: false
       Max Color: 255; 0; 0
       Max Intensity: 100
@@ -192,7 +192,7 @@ Visualization Manager:
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: false
-      Value: true
+      Value: false
     - Alpha: 0.800000011920929
       Class: rviz/Map
       Color Scheme: map
@@ -226,8 +226,8 @@ Visualization Manager:
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
-        Max Value: 14.164437294006348
-        Min Value: -8.677711486816406
+        Max Value: 9.989618301391602
+        Min Value: -7.547023773193359
         Value: true
       Axis: Z
       Channel Name: intensity
@@ -304,13 +304,13 @@ Visualization Manager:
       Unreliable: false
       Value: true
     - Class: rviz/MarkerArray
-      Enabled: true
+      Enabled: false
       Marker Topic: /prm_path
       Name: PRM Path
       Namespaces:
         {}
       Queue Size: 100
-      Value: true
+      Value: false
     - Class: rviz/MarkerArray
       Enabled: true
       Marker Topic: /prm_graph
@@ -449,7 +449,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 180.18812561035156
+      Distance: 66.92146301269531
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -465,9 +465,9 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.4297960996627808
+      Pitch: 1.3547961711883545
       Target Frame: base_link
-      Yaw: 3.8158557415008545
+      Yaw: 2.770848274230957
     Saved: ~
 Window Geometry:
   Displays:
