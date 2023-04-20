@@ -15,10 +15,14 @@
 * PRM Graph building and saving
 
 ```shell
+# -----Shell 1-----
 # change dir to catkin workspace
 $ catkin build
 $ source devel/setup.bash 
 $ roslaunch traversability_mapping offline_createMap.launch
+
+# -----Shell 2-----
+$ rosbag play *.bag --clock
 ```
 
 #### 2. Localization Stage: Mapping stage must have done before entering this stage
@@ -27,10 +31,15 @@ $ roslaunch traversability_mapping offline_createMap.launch
 * PRM Graph loading
 
 ```shell
+# -----Shell 1-----
 # change dir to catkin workspace
 $ catkin build
 $ source devel/setup.bash 
 $ roslaunch traversability_mapping offline_localize.launch
+
+
+# -----Shell 2-----
+$ rosbag play *.bag --clock
 ```
 
 **Note:** This repository initialized from the https://github.com/TixiaoShan/traversability_mapping repository.
