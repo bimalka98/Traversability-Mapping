@@ -7,6 +7,32 @@
   - `offline_createMap.launch` = runs lego-loam-bor-create-map node, save global 3D map, and save PRM graph
   - `offline_localize.launch` = runs lego-loam-bor-localize, and load PRM graph
 
+### How to Run
+
+#### 1. Mapping Stage 
+
+* 3D Global map building and saving
+* PRM Graph building and saving
+
+```shell
+# change dir to catkin workspace
+$ catkin build
+$ source devel/setup.bash 
+$ roslaunch traversability_mapping offline_createMap.launch
+```
+
+#### 2. Localization Stage: Mapping stage must have done before entering this stage
+
+* 3D Global map loading
+* PRM Graph loading
+
+```shell
+# change dir to catkin workspace
+$ catkin build
+$ source devel/setup.bash 
+$ roslaunch traversability_mapping offline_localize.launch
+```
+
 **Note:** This repository initialized from the https://github.com/TixiaoShan/traversability_mapping repository.
 
 1. [Traversability Mapping and Autonomous Navigation in Urban Area and Rough Terrain](https://youtu.be/B6lrbAEhEnE)

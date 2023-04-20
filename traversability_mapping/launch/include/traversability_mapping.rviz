@@ -4,6 +4,7 @@ Panels:
     Name: Displays
     Property Tree Widget:
       Expanded:
+        - /3D Map (Global)1
         - /PRM Path1/Namespaces1
       Splitter Ratio: 0.5414462089538574
     Tree Height: 787
@@ -23,7 +24,7 @@ Panels:
   - Class: rviz/Time
     Name: Time
     SyncMode: 0
-    SyncSource: Elevation Cloud
+    SyncSource: Trajectory
   - Class: rviz/Help
     Name: Help
 Preferences:
@@ -223,11 +224,11 @@ Visualization Manager:
       Unreliable: false
       Use Timestamp: false
       Value: false
-    - Alpha: 1
+    - Alpha: 0.699999988079071
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
-        Max Value: 9.989618301391602
-        Min Value: -7.547023773193359
+        Max Value: 11.668694496154785
+        Min Value: -8.39926815032959
         Value: true
       Axis: Z
       Channel Name: intensity
@@ -449,7 +450,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 66.92146301269531
+      Distance: 140.53579711914062
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -465,9 +466,9 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.3547961711883545
+      Pitch: 1.5697963237762451
       Target Frame: base_link
-      Yaw: 2.770848274230957
+      Yaw: 2.5008537769317627
     Saved: ~
 Window Geometry:
   Displays:
