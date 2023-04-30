@@ -84,6 +84,9 @@
         "typeindex": "cpp",
         "typeinfo": "cpp",
         "valarray": "cpp",
-        "variant": "cpp"
-    }
+        "variant": "cpp",
+        "nonlinearoptimization": "cpp",
+        "numericaldiff": "cpp"
+    },
+    "cmake.sourceDirectory": "/home/bimalka98/ros/catkin_ws/src/traversability_mapping/elevation_msgs"
 }

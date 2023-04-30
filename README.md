@@ -1,3 +1,7 @@
+## Special Notice:
+
+This package also depends on the package `entc-18-fyp-15/data_base`, when loading and saving the PRM graph. Therefore clone that first to the `catkin_ws/src` folder.
+
 ## Git rebase notice on April 19th, 2023
 
 * This branch was rebased to the main branch for further development. 
