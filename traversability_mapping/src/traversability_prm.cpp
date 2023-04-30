@@ -54,7 +54,7 @@ private:
     std::mutex mtx;
 
     /////////////// PRM save and load parameters ///////////////
-    std::string prmFileName = "/tmp/prm_graph.txt";
+    // std::string prmFileName = "prm_graph.txt";
     bool prmGraphLoaded = false;    
 
 public:
@@ -806,6 +806,9 @@ public:
         // control the debug message visibility
         const bool debugMode = false;
 
+        // get the directory to save the graph
+        std::string prmFileName = ros::package::getPath("data_base") + "/prmgraph/prm_graph.txt";
+
         if (debugMode) {
             std::cout << "==================" << std::endl;
             std::cout << "|Saving PRM graph|" << std::endl;
@@ -902,6 +905,9 @@ public:
 
          // control the debug message visibility
         const bool debugMode = false;
+
+        // get the directory to load the graph
+        std::string prmFileName = ros::package::getPath("data_base") + "/prmgraph/prm_graph.txt";
 
         if (debugMode) {
             std::cout << "==================" << std::endl;
